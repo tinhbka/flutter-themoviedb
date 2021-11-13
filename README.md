@@ -1,16 +1,13 @@
 # flutter_themoviedb
 
-A new Flutter project.
+Flutter assignment project for heyy.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+1. Clone or download source code from this repository
+2. Open project on VS Code or Android Studio
+3. Run project in your IDE by click 'Run' icon.
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Alt text](/screenshots/home.png?raw=true "Home page")
