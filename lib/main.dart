@@ -1,28 +1,38 @@
-import 'dart:async';
-
-import 'package:boilerplate/ui/my_app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_themoviedb/presentation/movie_list/movie_list_page.dart';
 
-import 'di/components/service_locator.dart';
+import 'data/di/injection.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await setPreferredOrientations();
-  await setupLocator();
-  return runZonedGuarded(() async {
-    runApp(MyApp());
-  }, (error, stack) {
-    print(stack);
+class SimpleBlocObserver extends BlocObserver {
+  @override
+  void onEvent(Bloc bloc, Object? event) {
+    super.onEvent(bloc, event);
+    print(event);
+  }
+
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    super.onTransition(bloc, transition);
+    print(transition);
+  }
+
+  @override
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
     print(error);
-  });
+    super.onError(bloc, error, stackTrace);
+  }
 }
 
-Future<void> setPreferredOrientations() {
-  return SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-    DeviceOrientation.landscapeRight,
-    DeviceOrientation.landscapeLeft,
-  ]);
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  Bloc.observer = SimpleBlocObserver();
+
+  await configureDependencies();
+
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: MovieListView(),
+  ));
 }
